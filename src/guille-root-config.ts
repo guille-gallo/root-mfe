@@ -10,11 +10,17 @@ const routes = constructRoutes(microfrontendLayout);
 const applications = constructApplications({
   routes,
   loadApp({ name }) {
+    console.log(`Loading app: ${name}`);
     return System.import(name);
   },
 });
 const layoutEngine = constructLayoutEngine({ routes, applications });
 
-applications.forEach(registerApplication);
+applications.forEach((app) => {
+  console.log(`Registering application: ${app.name}`);
+  registerApplication(app);
+});
+
 layoutEngine.activate();
 start();
+console.log('Single-SPA started');

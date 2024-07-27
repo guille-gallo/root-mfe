@@ -33,7 +33,25 @@
     You need to enable JavaScript to run this app.
   </noscript>
   <script>
-    System.import('@guille/root-config');
+    
+  System.resolve = System.constructor.prototype.resolve;
+
+  System.constructor.prototype.resolve = function () {
+    const url = System.resolve.apply(this, arguments);
+    console.log(`SystemJS is resolving ${arguments[0]} to ${url}`);
+    return url;
+  };
+
+  System.import('@guille/root-config').then(() => {
+    console.log('Root config loaded');
+  }).catch((err) => {
+    console.error('Error loading root config:', err);
+  });
+
+  window.addEventListener('single-spa:before-routing-event', (event) => {
+    console.log('Routing event:', event);
+  });
+
   </script>
   <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
 </body>

@@ -1,3 +1,4 @@
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-ts");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -14,10 +15,6 @@ module.exports = (webpackConfigEnv, argv) => {
   });
 
   return merge(defaultConfig, {
-    output: {
-      filename: 'guille-root-config.js',
-      path: path.resolve(__dirname, 'dist'),
-    },
     plugins: [
       new HtmlWebpackPlugin({
         inject: false,
@@ -27,6 +24,14 @@ module.exports = (webpackConfigEnv, argv) => {
           orgName,
         },
       }),
+      new CopyWebpackPlugin({
+        patterns: [
+          { from: '404.html', to: '' } // Adjust the path if necessary
+        ],
+      }),
     ],
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+    },
   });
 };
