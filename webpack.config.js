@@ -24,11 +24,6 @@ module.exports = (webpackConfigEnv, argv) => {
           orgName,
         },
       }),
-      new CopyWebpackPlugin({
-        patterns: [
-          { from: '404.html', to: '' } // Adjust the path if necessary
-        ],
-      }),
     ],
     output: {
       path: path.resolve(__dirname, 'dist'),
