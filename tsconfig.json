@@ -1,8 +1,21 @@
 {
   "extends": "ts-config-single-spa",
-  "files": ["src/guille-root-config.ts"],
   "compilerOptions": {
-    "declarationDir": "dist"
+    "jsx": "react-jsx",
+    "declarationDir": "dist",
+    "target": "es5",
+    "module": "esnext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "sourceMap": true,
+    "outDir": "./dist"
   },
   "include": ["src/**/*"],
   "exclude": ["src/**/*.test*"]
