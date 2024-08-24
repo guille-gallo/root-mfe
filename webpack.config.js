@@ -1,3 +1,4 @@
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-ts");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -14,10 +15,6 @@ module.exports = (webpackConfigEnv, argv) => {
   });
 
   return merge(defaultConfig, {
-    output: {
-      filename: 'guille-root-config.js',
-      path: path.resolve(__dirname, 'dist'),
-    },
     plugins: [
       new HtmlWebpackPlugin({
         inject: false,
@@ -28,5 +25,32 @@ module.exports = (webpackConfigEnv, argv) => {
         },
       }),
     ],
+    module: {
+      rules: [
+        {
+          test: /\.scss$/,  // Add a rule for SCSS files
+          use: [
+            'style-loader',  // Injects styles into DOM
+            'css-loader',    // Translates CSS into CommonJS modules
+            'sass-loader',   // Compiles Sass to CSS
+          ],
+        },
+        {
+          test: /\.css$/,  // Rule for CSS files
+          use: ['style-loader', 'css-loader'],
+        },
+        {
+          test: /\.(png|jpe?g|gif|svg)$/i,  // Rule for image files
+          type: 'asset/resource',
+        },
+        {
+          test: /\.(woff(2)?|ttf|eot|svg)$/,  // Rule for font files
+          type: 'asset/resource',
+        },
+      ],
+    },
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+    },
   });
 };

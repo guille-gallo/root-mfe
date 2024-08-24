@@ -1,0 +1,42 @@
+/* Targeting the navbar MFE by its ID using an attribute selector */
+div[id="single-spa-application:@guille/navbar"] {
+    width: 0;
+    height: 0;
+}
+/* Targeting the home MFE by its ID using an attribute selector */
+div[id="single-spa-application:@guille/home-mfe"] {
+    width: 100vw;
+    padding: 0;
+    box-sizing: border-box;
+    background: #272325;
+    height: 100vh;
+    margin-top: -28px;
+    color: #fff6e6;
+    margin-left: -68px;
+    margin-bottom: -28px;
+}
+
+/* Adjust the main content to not be affected by the navbar */
+main {
+    margin-left: 40px; /* Same as the width of your sidebar */
+    padding: 20px;
+    display: block;
+    width: 500px;
+    min-height: 150vh !important;
+    max-height: 150vh !important;
+    height: 150vh !important;
+}
+
+/* Ensure the nav container does not push content down */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px; /* Same width as the sidebar */
+}
+
+/* Prevent other elements from being pushed down by the navbar */
+/* body > *:not(nav) { */
+    /*margin-left: 250px;*/ /* Adjust based on the width of your sidebar */
+/*}*/
