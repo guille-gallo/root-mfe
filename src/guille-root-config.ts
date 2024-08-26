@@ -26,4 +26,4 @@ applications.forEach((app) => {
 layoutEngine.activate();
 
 start();
-console.log('Single-SPA started');
+console.log('Single-SPA started!!');
